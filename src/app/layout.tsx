@@ -1,5 +1,6 @@
 import "./globals.css"
 
+import { Analytics } from "@vercel/analytics/next"
 import type { Metadata } from "next"
 import localfont from "next/font/local"
 
@@ -37,6 +38,8 @@ export default function RootLayout({
   return (
     <html className = {`${fonts.map(font => font.variable).join(" ")} antialiased cursor-default select-none`} lang = "en">
       <body className = "bg-background p-5">
+        <Analytics />
+
         { children }
       </body>
     </html>
