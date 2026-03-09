@@ -1,6 +1,6 @@
 "use client"
 
-import { IconRocket, IconXboxA, IconXboxB, IconX } from "@tabler/icons-react"
+import { IconRocket, IconX, IconXboxA, IconXboxB } from "@tabler/icons-react"
 
 export default function Form() {
   const inputsProps = [
@@ -44,7 +44,7 @@ export default function Form() {
       </div>
 
       <button
-        className = "active:bg-form-active-submit-button-fill bg-form-submit-button-fill drop-shadow-form-submit-button duration-150 flex font-form-submit-button gap-3 items-center justify-center p-5 rounded-3xl text-form-submit-button-text text-xl tracking-wider transition uppercase"
+        className = "active:bg-form-active-submit-button-fill bg-form-submit-button-fill drop-shadow-form-submit-button flex font-form-submit-button gap-3 items-center justify-center p-5 rounded-3xl text-form-submit-button-text text-xl tracking-wider uppercase"
         type = "submit"
       >
         <IconRocket size = {25} />

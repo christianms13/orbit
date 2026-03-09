@@ -28,7 +28,23 @@
   --color-form-input-text: #d8dbdb;
   --color-form-submit-button-fill: #0cd6d6;
   --color-form-submit-button-text: #102222;
-  --color-overlay-menu-toggle: #46a4a4;
+  --color-header-menu-toggle: #46a4a4;
+  --color-overlay-button-border: #151f1f;
+  --color-overlay-button-english-gradient-0: #0a3161;
+  --color-overlay-button-english-gradient-1: #ffffff;
+  --color-overlay-button-english-gradient-2: #b31942;
+  --color-overlay-button-figma-gradient-0: #f24e1e;
+  --color-overlay-button-figma-gradient-1: #ff7262;
+  --color-overlay-button-figma-gradient-2: #a259ff;
+  --color-overlay-button-figma-gradient-3: #1abcfe;
+  --color-overlay-button-figma-gradient-4: #0acf83;
+  --color-overlay-button-fill: #081414;
+  --color-overlay-button-github: #5c6bc0;
+  --color-overlay-button-icon-fill: #e7e9e9;
+  --color-overlay-button-spanish-gradient-0: #ae0d12;
+  --color-overlay-button-spanish-gradient-1: #fabe00;
+  --color-overlay-button-spanish-gradient-2: #ae0d12;
+  --color-overlay-menu-close-button: #45a4a4;
 
   --drop-shadow-connection-graph-balls-connection-line: 0 0 8px #57e3e3, 0 0 8px #9d71d0;
   --drop-shadow-connection-graph-logo: 0 0 10px #00eeff99;
@@ -44,6 +60,7 @@
   --font-connection-graph-title-and-level-indicator: var(--font-connection-graph-title-and-level-indicator);
   --font-form-input: var(--font-form-input);
   --font-form-submit-button: var(--font-form-submit-button);
+  --font-overlay-button: var(--font-overlay-button);
 
   @keyframes pulse-fast {
     50% {

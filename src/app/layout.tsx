@@ -40,13 +40,19 @@ const formSubmitButtonFont = localfont({
   variable: "--font-form-submit-button"
 })
 
+const overlayButtonFont = localfont({
+  src: "../fonts/blinker/semibold.woff2",
+  variable: "--font-overlay-button"
+})
+
 const fonts = [
   brandFont,
   connectionGraphPathFoundDeclarationFont,
   connectionGraphPathFoundValueFont,
   connectionGraphTitleAndLevelIndicatorFont,
   formInputFont,
-  formSubmitButtonFont
+  formSubmitButtonFont,
+  overlayButtonFont
 ]
 
 export default function RootLayout({
