@@ -41,10 +41,10 @@ export default function ConnectionGraph() {
   return (
     <div className = "border border-connection-graph-border flex flex-col gap-5 p-3 rounded-xl w-full">
       <div className = "flex items-center justify-between">
-        <h3 className = "font-connection-graph-title-and-level-indicator text-connection-graph-title text-lg uppercase">connection graph</h3>
+        <h2 className = "font-connection-graph-title-and-level-indicator text-connection-graph-title text-lg uppercase">connection graph</h2>
 
         <span className = "bg-connection-graph-level-indicator-fill border-2 border-connection-graph-level-indicator-border flex items-center justify-center px-2 py-0.5 rounded-lg">
-          <p className = "font-connection-graph-title-and-level-indicator text-connection-graph-level-indicator-text text-sm">2 degrees</p>
+          <p className = "font-connection-graph-title-and-level-indicator text-connection-graph-level-indicator-text text-sm uppercase">standby</p>
         </span>
       </div>
 

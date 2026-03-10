@@ -40,6 +40,16 @@ const formSubmitButtonFont = localfont({
   variable: "--font-form-submit-button"
 })
 
+const optimalPathResultsState = localfont({
+  src: "../fonts/do-hyeon/regular.woff2",
+  variable: "--font-optimal-path-results-state"
+})
+
+const optimalPathResultsTitleFont = localfont({
+  src: "../fonts/geo/italic.woff2",
+  variable: "--font-optimal-path-results-title"
+})
+
 const overlayButtonFont = localfont({
   src: "../fonts/blinker/semibold.woff2",
   variable: "--font-overlay-button"
@@ -52,6 +62,8 @@ const fonts = [
   connectionGraphTitleAndLevelIndicatorFont,
   formInputFont,
   formSubmitButtonFont,
+  optimalPathResultsState,
+  optimalPathResultsTitleFont,
   overlayButtonFont
 ]
 

@@ -2,8 +2,8 @@
 
 import { IconMenu2 } from "@tabler/icons-react"
 import Image from "next/image"
-import Overlay from "./Overlay"
 import { useState } from "react"
+import Overlay from "./Overlay"
 
 export default function Header() {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false)
