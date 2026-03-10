@@ -1,3 +1,4 @@
+import { useI18n } from "@/i18n/I18nProvider"
 import { IconBrandFigma, IconBrandGithub, IconX } from "@tabler/icons-react"
 import Link from "next/link"
 
@@ -6,30 +7,31 @@ interface OverlayProps {
 }
 
 export default function Overlay({onClose}: OverlayProps) {
-  const buttonClassName = "border border-overlay-button-border bg-overlay-button-fill capitalize rounded-2xl p-1.5 font-overlay-button text-overlay-button-icon-fill flex items-center gap-1 text-xl w-full justify-center active:bg-overlay-button-border"
+  const { setLanguage, t } = useI18n()
+  const buttonClassName = "active:bg-overlay-button-border bg-overlay-button-fill border-2 border-overlay-button-border capitalize flex font-overlay-button gap-1 items-center justify-center p-1.5 rounded-2xl text-overlay-button-icon-fill text-xl w-full"
 
   return (
     <div
-      className = "min-h-screen w-full bg-black/80 backdrop-blur-lg fixed top-0 left-0 z-2 flex flex-col items-center justify-center px-14"
+      className = "backdrop-blur-xl bg-black/80 fixed flex flex-col items-center justify-center left-0 min-h-screen px-14 top-0 w-full z-2"
       onClick = {onClose}
     >
       <IconX
-        className = "text-overlay-menu-close-button absolute top-4.5 right-3"
+        className = "absolute right-3 text-overlay-menu-close-button top-4.5"
         onClick = {onClose}
         stroke = {3}
       />
 
-      <div className = "flex flex-col w-max gap-2">
+      <div className = "flex flex-col gap-2 w-max" onClick = { (e) => e.stopPropagation() }>
         <Link
           className = {buttonClassName}
           href = "https://www.figma.com/design/mBHbUeowUpy3e4rIgle9jF/orbit?m=auto&t=1eDsvdQSmILyoSlI-1"
         >
           <IconBrandFigma />
           <span
-            className = "text-transparent bg-clip-text"
+            className = "bg-clip-text text-transparent"
             style = {{ backgroundImage: "linear-gradient(to right, var(--color-overlay-button-figma-gradient-0), var(--color-overlay-button-figma-gradient-1), var(--color-overlay-button-figma-gradient-2), var(--color-overlay-button-figma-gradient-3), var(--color-overlay-button-figma-gradient-4))" }}
           >
-            check figma design
+            {t("overlay.figma")}
           </span>
         </Link>
 
@@ -41,26 +43,26 @@ export default function Overlay({onClose}: OverlayProps) {
           <span
             className = "text-overlay-button-github"
           >
-            check github code
+            {t("overlay.github")}
           </span>
         </Link>
 
-        <div className = "flex items-center w-full justify-between gap-2">
-          <button className = {buttonClassName}>
+        <div className = "flex gap-2 items-center justify-between w-full">
+          <button className = {buttonClassName} onClick = {() => setLanguage("en")}>
             <span
-              className = "text-transparent bg-clip-text"
+              className = "bg-clip-text text-transparent"
               style = {{ backgroundImage: "linear-gradient(to right, var(--color-overlay-button-english-gradient-0), var(--color-overlay-button-english-gradient-1), var(--color-overlay-button-english-gradient-2))" }}
             >
-              english
+              {t("overlay.english")}
             </span>
           </button>
 
-          <button className = {buttonClassName}>
+          <button className = {buttonClassName} onClick = {() => setLanguage("es")}>
             <span
-              className = "text-transparent bg-clip-text"
+              className = "bg-clip-text text-transparent"
               style = {{ backgroundImage: "linear-gradient(to right, var(--color-overlay-button-spanish-gradient-0), var(--color-overlay-button-spanish-gradient-1), var(--color-overlay-button-spanish-gradient-2))" }}
             >
-              español
+              {t("overlay.spanish")}
             </span>
           </button>
         </div>

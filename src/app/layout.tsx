@@ -1,5 +1,6 @@
 import "./globals.css"
 
+import I18nProvider from "@/i18n/I18nProvider"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Metadata } from "next"
@@ -20,9 +21,9 @@ const connectionGraphPathFoundDeclarationFont = localfont({
   variable: "--font-connection-graph-path-found-declaration"
 })
 
-const connectionGraphPathFoundValueFont = localfont({
+const connectionGraphPathFoundStateFont = localfont({
   src: "../fonts/cascadia-code/bold.woff2",
-  variable: "--font-connection-graph-path-found-value"
+  variable: "--font-connection-graph-path-found-state"
 })
 
 const connectionGraphTitleAndLevelIndicatorFont = localfont({
@@ -41,7 +42,7 @@ const formSubmitButtonFont = localfont({
 })
 
 const optimalPathResultsState = localfont({
-  src: "../fonts/do-hyeon/regular.woff2",
+  src: "../fonts/bebas-neue/regular.woff2",
   variable: "--font-optimal-path-results-state"
 })
 
@@ -58,7 +59,7 @@ const overlayButtonFont = localfont({
 const fonts = [
   brandFont,
   connectionGraphPathFoundDeclarationFont,
-  connectionGraphPathFoundValueFont,
+  connectionGraphPathFoundStateFont,
   connectionGraphTitleAndLevelIndicatorFont,
   formInputFont,
   formSubmitButtonFont,
@@ -78,7 +79,9 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
 
-        {children}
+        <I18nProvider>
+          {children}
+        </I18nProvider>
       </body>
     </html>
   )

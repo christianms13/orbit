@@ -1,10 +1,13 @@
 "use client"
 
+import { useI18n } from "@/i18n/I18nProvider"
 import { IconRocket, IconX, IconXboxA, IconXboxB } from "@tabler/icons-react"
 import { useState } from "react"
 
 export default function Form() {
   const [inputValues, setInputValues] = useState(["", ""])
+
+  const { t } = useI18n()
 
   const handleClearInput = (index: number) => {
     const newValues = [...inputValues]
@@ -28,11 +31,11 @@ export default function Form() {
   const inputsProps = [
     {
       Icon: IconXboxA,
-      placeholder: "e.g. Pedro Pascal"
+      placeholder: t("form.input.placeholder.starting")
     },
     {
       Icon: IconXboxB,
-      placeholder: "e.g. Harrison Ford"
+      placeholder: t("form.input.placeholder.target")
     }
   ]
 
@@ -44,10 +47,10 @@ export default function Form() {
       <div className = "flex flex-col gap-2">
         {inputsProps.map(({ Icon, placeholder }, i) => (
           <div
-            className = "bg-form-input-fill border-2 border-form-input-border flex items-center justify-between px-4 py-3 rounded-[25px] gap-3"
+            className = "bg-form-input-fill border-2 border-form-input-border flex gap-3 items-center justify-between px-4 py-3 rounded-[25px]"
             key = {i}
           >
-            <div className = "flex items-center justify-start gap-3 w-full">
+            <div className = "flex gap-3 items-center justify-start w-full">
               <Icon className = { i === 0 ? "drop-shadow-form-input-starting-tag text-form-input-starting-tag" : "drop-shadow-form-input-target-tag text-form-input-target-tag" } />
 
               <input
@@ -74,11 +77,11 @@ export default function Form() {
       </div>
 
       <button
-        className = "active:bg-form-active-submit-button-fill bg-form-submit-button-fill drop-shadow-form-submit-button flex font-form-submit-button gap-3 items-center justify-center p-5 rounded-3xl text-form-submit-button-text text-xl tracking-wider uppercase"
+        className = "active:bg-form-active-submit-button-fill bg-form-submit-button-fill drop-shadow-form-submit-button flex font-form-submit-button gap-3 items-center justify-center p-5 rounded-3xl text-form-submit-button-text text-lg tracking-wider uppercase"
         type = "submit"
       >
-        <IconRocket size = {25} />
-        calculate path
+        <IconRocket size = {23} />
+        {t("form.submit")}
       </button>
     </form>
   )

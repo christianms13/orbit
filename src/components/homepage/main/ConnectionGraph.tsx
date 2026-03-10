@@ -1,5 +1,6 @@
 "use client"
 
+import { useI18n } from "@/i18n/I18nProvider"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 
@@ -23,6 +24,8 @@ export default function ConnectionGraph() {
     target: { left: "95%", top: "50%" }
   })
 
+  const { t } = useI18n()
+
   useEffect(() => {
     const updatePositions = () => {
       setBalls({
@@ -41,10 +44,14 @@ export default function ConnectionGraph() {
   return (
     <div className = "border border-connection-graph-border flex flex-col gap-5 p-3 rounded-xl w-full">
       <div className = "flex items-center justify-between">
-        <h2 className = "font-connection-graph-title-and-level-indicator text-connection-graph-title text-lg uppercase">connection graph</h2>
+        <h2 className = "font-connection-graph-title-and-level-indicator text-connection-graph-title uppercase">
+          {t("connection-graph.title")}
+        </h2>
 
         <span className = "bg-connection-graph-level-indicator-fill border-2 border-connection-graph-level-indicator-border flex items-center justify-center px-2 py-0.5 rounded-lg">
-          <p className = "font-connection-graph-title-and-level-indicator text-connection-graph-level-indicator-text text-sm uppercase">standby</p>
+          <p className = "font-connection-graph-title-and-level-indicator text-connection-graph-level-indicator-text text-xs uppercase">
+            {t("connection-graph.level-indicator.standby")}
+          </p>
         </span>
       </div>
 
@@ -65,7 +72,12 @@ export default function ConnectionGraph() {
           <div className = "absolute bg-connection-graph-target-ball-fill drop-shadow-connection-graph-target-ball h-2 rounded-full w-2" style = {{ left: balls.target.left, top: balls.target.top, transition: "all 2.5s ease-in-out" }} />
         </div>
 
-        <p className = "font-connection-graph-path-found-declaration text-connection-graph-path-found-declaration">path_found: <span className = "animate-pulse-fast font-connection-graph-path-found-value text-connection-graph-path-found-value">waiting...</span></p>
+        <p className = "font-connection-graph-path-found-declaration text-connection-graph-path-found-declaration text-xs">
+          {t("connection.path-found")}
+          <span className = "animate-pulse-fast font-connection-graph-path-found-state text-connection-graph-path-found-state">
+            {t("connection.path-found-state.waiting")}
+          </span>
+        </p>
       </div>
     </div>
   )

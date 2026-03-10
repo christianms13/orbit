@@ -1,5 +1,6 @@
 "use client"
 
+import { useI18n } from "@/i18n/I18nProvider"
 import { IconMenu2 } from "@tabler/icons-react"
 import Image from "next/image"
 import { useState } from "react"
@@ -8,12 +9,14 @@ import Overlay from "./Overlay"
 export default function Header() {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false)
 
+  const { t } = useI18n()
+
   return (
     <>
       <header className = "flex items-center justify-between">
         <div className = "flex gap-3 items-center">
           <Image
-            alt = "Logo"
+            alt = {t("header.logo-alt")}
             height = {30}
             priority
             src = "/logo/logo.png"
