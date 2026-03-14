@@ -41,17 +41,17 @@ async function fetchMoviesAndCast() {
 
         const topCast: TMDBCast[] = creditsData.cast?.slice(0, 15) || []
 
-        const movieData = {
-          id: movie.id,
-          poster_path: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : null,
-          title: movie.title
-        }
-
         const castData = topCast.map(actor => ({
           id: actor.id,
           name: actor.name,
           profile: actor.profile_path ? `https://image.tmdb.org/t/p/w500${actor.profile_path}` : null
         }))
+
+        const movieData = {
+          id: movie.id,
+          poster_path: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : null,
+          title: movie.title
+        }
 
         const query = `
           MERGE (m:Movie {id: $movieData.id})
@@ -66,7 +66,7 @@ async function fetchMoviesAndCast() {
           MERGE (a)-[:ACTED_IN]->(m)
         `
 
-        await session.run(query, { movieData, castData })
+        await session.run(query, { castData, movieData })
         totalMoviesAdded++
         process.stdout.write(`\r✅ added movie: ${movie.title.substring(0, 30).padEnd(30)} (${totalMoviesAdded}/500)`)
       }
