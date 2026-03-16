@@ -7,7 +7,30 @@ interface Neo4jNode {
   properties: Record<string, unknown>
 }
 
-export async function findShortestPath(actor1Name: string, actor2Name: string) {
+export type PathNode = {
+  [key: string]: unknown
+  id?: string
+  name?: string
+  poster?: string
+  profile?: string
+  title?: string
+  type: string
+}
+
+export type PathState = {
+  message?: string
+  path?: PathNode[]
+  success: boolean
+}
+
+export async function findShortestPath(prevState: PathState, formData: FormData): Promise<PathState> {
+  const actor1Name = formData.get("actor1") as string
+  const actor2Name = formData.get("actor2") as string
+
+  if (!actor1Name || !actor2Name) {
+    return { message: "❌ both actor names are required", success: false }
+  }
+
   const driver = getDriver()
   const session = driver.session()
 
@@ -28,10 +51,10 @@ export async function findShortestPath(actor1Name: string, actor2Name: string) {
     }
 
     const rawNodes = result.records[0].get("pathNodes")
-    const path = rawNodes.map((node: Neo4jNode) => ({
+    const path: PathNode[] = rawNodes.map((node: Neo4jNode) => ({
       type: node.labels[0],
       ...node.properties
-    }))
+    })) as PathNode[]
 
     return { path, success: true }
 
