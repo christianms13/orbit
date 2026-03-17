@@ -2,6 +2,9 @@ export const dictionaries = {
   en: {
     "connection-graph.level-indicator.standby": "standby",
     "connection-graph.logo-alt": "Minimal Logo",
+    "connection-graph.status.error": "error",
+    "connection-graph.status.level": "level",
+    "connection-graph.status.levels": "levels",
     "connection-graph.title": "connection graph",
     "connection.path-found": "path_found: ",
     "connection.path-found-state.false": "false",
@@ -36,6 +39,9 @@ export const dictionaries = {
   es: {
     "connection-graph.level-indicator.standby": "en espera",
     "connection-graph.logo-alt": "Logo Minimalista",
+    "connection-graph.status.error": "error",
+    "connection-graph.status.level": "nivel",
+    "connection-graph.status.levels": "niveles",
     "connection-graph.title": "gráfico de conexión",
     "connection.path-found": "conexión_encontrada: ",
     "connection.path-found-state.false": "falso",

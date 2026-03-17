@@ -23,7 +23,14 @@
   --color-connection-graph-path-found-state-false: #f23a3a;
   --color-connection-graph-path-found-state-true: #9c57ea;
   --color-connection-graph-starting-ball-fill: #0ac1c1;
+  --color-connection-graph-starting-ball-glow: #57e3e3;
+  --color-connection-graph-starting-ball-glow-soft: #57e3e399;
+  --color-connection-graph-status-error-border: #f23a3a;
+  --color-connection-graph-status-error-fill: #2a0a0a;
+  --color-connection-graph-status-path-length: #9c57ea;
   --color-connection-graph-target-ball-fill: #9c57ea;
+  --color-connection-graph-target-ball-glow: #b985ff;
+  --color-connection-graph-target-ball-glow-soft: #b985ff99;
   --color-connection-graph-title: #e7e9e9;
 
   --color-form-active-submit-button-fill: #0ceded;
@@ -70,7 +77,9 @@
   --drop-shadow-connection-graph-balls-connection-line: 0 0 8px #57e3e3, 0 0 8px #9d71d0;
   --drop-shadow-connection-graph-logo: 0 0 10px #00eeff99;
   --drop-shadow-connection-graph-starting-ball: 0 0 5px #57e3e3;
+  --drop-shadow-connection-graph-starting-ball-glow: 0 0 20px #57e3e3, 0 0 30px #57e3e3;
   --drop-shadow-connection-graph-target-ball: 0 0 5px #9d71d0;
+  --drop-shadow-connection-graph-target-ball-glow: 0 0 20px #9d71d0, 0 0 30px #9d71d0;
 
   --drop-shadow-form-input-starting-tag: 0 0 10px #57e3e3;
   --drop-shadow-form-input-target-tag: 0 0 10px #9d71d0;
@@ -97,10 +106,46 @@
   --font-optimal-path-results-title: var(--font-optimal-path-results-title);
 
   --font-overlay-button: var(--font-overlay-button);
+}
 
-  @keyframes pulse-fast {
-    50% {
-      opacity: .5;
-    }
+@keyframes pulse-fast {
+  50% {
+    opacity: .5;
+  }
+}
+
+@keyframes pulse-slow {
+  50% {
+    opacity: .5;
+  }
+}
+
+@keyframes star-halo-starting {
+  0% {
+    filter: blur(4px) brightness(.95);
+    opacity: .32;
+  }
+  50% {
+    filter: blur(8px) brightness(1.18);
+    opacity: .82;
+  }
+  100% {
+    filter: blur(4px) brightness(.95);
+    opacity: .32;
+  }
+}
+
+@keyframes star-halo-target {
+  0% {
+    filter: blur(4px) brightness(.95);
+    opacity: .32;
+  }
+  50% {
+    filter: blur(8px) brightness(1.18);
+    opacity: .82;
+  }
+  100% {
+    filter: blur(4px) brightness(.95);
+    opacity: .32;
   }
 }
