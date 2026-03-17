@@ -3,8 +3,10 @@ export const dictionaries = {
     "connection-graph.level-indicator.standby": "standby",
     "connection-graph.logo-alt": "Minimal Logo",
     "connection-graph.title": "connection graph",
-    "connection.path-found-state.waiting": "waiting...",
     "connection.path-found": "path_found: ",
+    "connection.path-found-state.false": "false",
+    "connection.path-found-state.true": "true",
+    "connection.path-found-state.waiting": "waiting...",
 
     "form.input.placeholder.starting": "e.g. Michael B. Jordan",
     "form.input.placeholder.target": "e.g. Ryan Gosling",
@@ -35,8 +37,10 @@ export const dictionaries = {
     "connection-graph.level-indicator.standby": "en espera",
     "connection-graph.logo-alt": "Logo Minimalista",
     "connection-graph.title": "gráfico de conexión",
-    "connection.path-found-state.waiting": "esperando...",
     "connection.path-found": "conexión_encontrada: ",
+    "connection.path-found-state.false": "falso",
+    "connection.path-found-state.true": "verdadero",
+    "connection.path-found-state.waiting": "esperando...",
 
     "form.input.placeholder.starting": "ej. Michael B. Jordan",
     "form.input.placeholder.target": "ej. Ryan Gosling",

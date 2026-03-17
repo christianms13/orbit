@@ -33,7 +33,7 @@ export default function Header() {
 
           <h1 
             className = "font-bold font-brand text-3xl text-white tracking-wider uppercase"
-            style = {{ textShadow: "0 0 10px #00ffffcc, 0 0 20px #00ffff99, 0 0 30px #00ffff66, 0 0 40px #00ffff33" }}
+            style = {{ textShadow: "var(--text-shadow-header-title)" }}
           >
             orbit
           </h1>

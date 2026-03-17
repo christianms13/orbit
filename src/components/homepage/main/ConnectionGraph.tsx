@@ -1,8 +1,13 @@
 "use client"
 
+import { PathState } from "@/actions/orbit"
 import { useI18n } from "@/i18n/I18nProvider"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+
+interface ConnectionGraphProps {
+  resultData: PathState | null
+}
 
 const pickBallPosition = (minX: number, maxX: number) => {
   for (let i = 0; i < 100; i++) {
@@ -18,13 +23,36 @@ const pickBallPosition = (minX: number, maxX: number) => {
   return { left: `${minX}%`, top: "50%" }
 }
 
-export default function ConnectionGraph() {
+export default function ConnectionGraph({ resultData }: ConnectionGraphProps) {
   const [balls, setBalls] = useState({
     start: { left: "5%", top: "50%" },
     target: { left: "95%", top: "50%" }
   })
 
   const {t} = useI18n()
+
+  const getPathState = () => {
+    if (resultData === null) {
+      return {
+        textKey: "connection.path-found-state.waiting",
+        color: "#0df2f2"
+      }
+    }
+
+    if (resultData.success) {
+      return {
+        textKey: "connection.path-found-state.true",
+        color: "#9c57ea"
+      }
+    }
+
+    return {
+      textKey: "connection.path-found-state.false",
+      color: "#f23a3a"
+    }
+  }
+
+  const pathState = getPathState()
 
   const responsiveProperties = {
     "inner.path-round": "360:text-sm 390:text-base",
@@ -86,8 +114,11 @@ export default function ConnectionGraph() {
 
         <p className = { `${responsiveProperties["inner.path-round"]} font-connection-graph-path-found-declaration text-connection-graph-path-found-declaration text-xs` }>
           {t("connection.path-found")}
-          <span className = "animate-pulse-fast font-connection-graph-path-found-state text-connection-graph-path-found-state">
-            {t("connection.path-found-state.waiting")}
+          <span 
+            className = "animate-pulse-fast font-connection-graph-path-found-state"
+            style={{ color: pathState.color }}
+          >
+            {t(pathState.textKey)}
           </span>
         </p>
       </div>

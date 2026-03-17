@@ -20,6 +20,8 @@
   --color-connection-graph-logo-outer-border: #095757;
   --color-connection-graph-path-found-declaration: #0b9595;
   --color-connection-graph-path-found-state: #0df2f2;
+  --color-connection-graph-path-found-state-false: #f23a3a;
+  --color-connection-graph-path-found-state-true: #9c57ea;
   --color-connection-graph-starting-ball-fill: #0ac1c1;
   --color-connection-graph-target-ball-fill: #9c57ea;
   --color-connection-graph-title: #e7e9e9;
@@ -77,6 +79,8 @@
   --drop-shadow-optimal-path-results-connection: 0 0 5px #151f1f;
   --drop-shadow-optimal-path-results-origin: 0 0 10px #57e3e3;
   --drop-shadow-optimal-path-results-target: 0 0 10px #9d71d0;
+
+  --text-shadow-header-title: 0 0 10px #00ffffcc, 0 0 20px #00ffff99, 0 0 30px #00ffff66, 0 0 40px #00ffff33;
 
   --font-brand: var(--font-brand);
 

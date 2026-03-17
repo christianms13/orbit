@@ -17,7 +17,7 @@ export default function Main() {
         setIsLoading = {setIsLoading} 
         setResultData = {setResultData} 
       />
-      <ConnectionGraph />
+      <ConnectionGraph resultData = {resultData} />
       <OptimalPathResults
         isLoading = {isLoading} 
         resultData = {resultData} 
