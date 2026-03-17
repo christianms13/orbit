@@ -35,7 +35,7 @@ async function fetchMoviesAndCast() {
         const creditsRes = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${TMDB_API_KEY}`)
         const creditsData = await creditsRes.json()
 
-        const topCast: TMDBCast[] = creditsData.cast?.slice(0, 30) || []
+        const topCast: TMDBCast[] = creditsData.cast?.slice(0, 38) || []
 
         const castData = topCast.map(actor => ({
           id: actor.id,
