@@ -1,7 +1,8 @@
 "use server"
 
-import { ManagedTransaction, Session } from "neo4j-driver"
+import { normalizeActorNameForMatch, sanitizeActorNameInput } from "@/lib/actorName"
 import { getDriver } from "@/lib/neo4j"
+import { ManagedTransaction, Session } from "neo4j-driver"
 
 interface Neo4jNode {
   labels: string[]
@@ -36,9 +37,10 @@ function hasEnv(name: string): boolean {
 
 async function expandActorNetwork(actorName: string, session: Session): Promise<boolean> {
   const apiKey = process.env.TMDB_API_KEY
+  const sanitizedActorName = sanitizeActorNameInput(actorName)
 
   try {
-    const searchRes = await fetch(`https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${encodeURIComponent(actorName)}`)
+    const searchRes = await fetch(`https://api.themoviedb.org/3/search/person?api_key=${apiKey}&query=${encodeURIComponent(sanitizedActorName)}`)
     const searchData = await searchRes.json()
 
     if (!searchData.results?.length) {
@@ -61,7 +63,8 @@ async function expandActorNetwork(actorName: string, session: Session): Promise<
 
     const query = `
       MERGE (a:Actor {id: $actorId})
-      ON CREATE SET a.name = $actorName
+      ON CREATE SET a.name = $actorName, a.normalizedName = $normalizedActorName
+      ON MATCH SET a.normalizedName = coalesce(a.normalizedName, $normalizedActorName)
 
       WITH a
       UNWIND $movies AS movie
@@ -73,7 +76,12 @@ async function expandActorNetwork(actorName: string, session: Session): Promise<
     `
 
     await session.executeWrite((tx: ManagedTransaction) =>
-      tx.run(query, { actorId: actor.id, actorName: actor.name, movies })
+      tx.run(query, {
+        actorId: actor.id,
+        actorName: actor.name,
+        movies,
+        normalizedActorName: normalizeActorNameForMatch(actor.name)
+      })
     )
 
     return true
@@ -116,8 +124,11 @@ async function fetchTMDBDetails(id: number | string, type: string): Promise<Part
 }
 
 export async function findShortestPath(prevState: PathState, formData: FormData): Promise<PathState> {
-  const actor1Name = formData.get("actor1") as string
-  const actor2Name = formData.get("actor2") as string
+  const actor1Raw = (formData.get("actor1") as string) ?? ""
+  const actor2Raw = (formData.get("actor2") as string) ?? ""
+
+  const actor1Name = sanitizeActorNameInput(actor1Raw)
+  const actor2Name = sanitizeActorNameInput(actor2Raw)
 
   if (!actor1Name || !actor2Name) {
     return { message: "optimal-path-results.error.missing-names", success: false }
@@ -133,12 +144,14 @@ export async function findShortestPath(prevState: PathState, formData: FormData)
     const driver = getDriver()
     session = driver.session()
 
-    const searchName1 = actor1Name.toLowerCase()
-    const searchName2 = actor2Name.toLowerCase()
+    const searchName1 = normalizeActorNameForMatch(actor1Name)
+    const searchName2 = normalizeActorNameForMatch(actor2Name)
 
     const pathQuery = `
-      MATCH (start:Actor) WHERE toLower(start.name) = $searchName1
-      MATCH (end:Actor) WHERE toLower(end.name) = $searchName2
+      MATCH (start:Actor)
+      WHERE coalesce(start.normalizedName, toLower(trim(replace(replace(replace(start.name, '    ', ' '), '   ', ' '), '  ', ' ')))) = $searchName1
+      MATCH (end:Actor)
+      WHERE coalesce(end.normalizedName, toLower(trim(replace(replace(replace(end.name, '    ', ' '), '   ', ' '), '  ', ' ')))) = $searchName2
       MATCH p = allShortestPaths((start)-[:ACTED_IN*1..6]-(end))
       RETURN nodes(p) AS pathNodes
     `

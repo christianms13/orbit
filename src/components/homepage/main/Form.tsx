@@ -2,6 +2,7 @@
 
 import { findShortestPath, PathState } from "@/actions/orbit"
 import { useI18n } from "@/i18n/I18nProvider"
+import { sanitizeActorNameInput } from "@/lib/actorName"
 import { IconRocket, IconX, IconXboxA, IconXboxB } from "@tabler/icons-react"
 import { useState } from "react"
 
@@ -34,15 +35,19 @@ export default function Form({ isLoading, setIsLoading, setResultData }: FormPro
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!inputValues[0] || !inputValues[1]) return
+    const normalizedInputValues = inputValues.map((value) => sanitizeActorNameInput(value))
+
+    if (!normalizedInputValues[0] || !normalizedInputValues[1]) return
 
     setIsLoading(true)
     setResultData(null)
 
+    setInputValues(normalizedInputValues)
+
     try {
       const formData = new FormData()
-      formData.append("actor1", inputValues[0])
-      formData.append("actor2", inputValues[1])
+      formData.append("actor1", normalizedInputValues[0])
+      formData.append("actor2", normalizedInputValues[1])
 
       const response = await findShortestPath(
         { success: true },
