@@ -300,7 +300,7 @@ export default function Form({ isLoading, setIsLoading, setResultData }: FormPro
                 role = "listbox"
               >
                 {isFetchingSuggestions[i] && (
-                  <p className = "capitalize font-form-input px-4 py-3 text-form-input-placeholder/80 text-sm">
+                  <p className = "font-form-input px-4 py-3 text-form-input-placeholder/80 text-sm">
                     {t("form.autocomplete.loading")}
                   </p>
                 )}
