@@ -36,7 +36,6 @@ export default function ConnectionGraph({ resultData }: ConnectionGraphProps) {
     start: { left: "5%", top: "50%" },
     target: { left: "95%", top: "50%" }
   })
-  const [isGlowActive, setIsGlowActive] = useState(false)
   const isConnectionFound = Boolean(resultData?.success)
 
   const {t} = useI18n()
@@ -89,19 +88,6 @@ export default function ConnectionGraph({ resultData }: ConnectionGraphProps) {
     return () => clearInterval(interval)
   }, [resultData?.success])
 
-  useEffect(() => {
-    if (!isConnectionFound) {
-      setIsGlowActive(false)
-      return
-    }
-
-    const timeout = setTimeout(() => {
-      setIsGlowActive(true)
-    }, BALL_TRANSITION_MS)
-
-    return () => clearTimeout(timeout)
-  }, [isConnectionFound])
-
   return (
     <div className = "border border-connection-graph-border flex flex-col gap-5 p-3 rounded-xl w-full">
       <div className = "flex items-center justify-between">
@@ -147,9 +133,10 @@ export default function ConnectionGraph({ resultData }: ConnectionGraphProps) {
             <div
               className = "absolute -left-2 -top-2 h-6 w-6 rounded-full"
               style = {{
-                animation: isGlowActive ? "star-halo-starting 1.8s ease-in-out infinite" : "none",
+                animation: isConnectionFound ? `star-halo-starting 1.8s ease-in-out ${BALL_TRANSITION_MS}ms infinite` : "none",
                 background: "radial-gradient(circle, var(--color-connection-graph-starting-ball-glow) 0%, var(--color-connection-graph-starting-ball-glow) 18%, var(--color-connection-graph-starting-ball-glow-soft) 42%, transparent 78%)",
-                opacity: isGlowActive ? .6 : 0,
+                opacity: isConnectionFound ? .6 : 0,
+                transition: `opacity 250ms ease ${BALL_TRANSITION_MS}ms`,
                 willChange: "opacity, filter"
               }}
             />
@@ -162,9 +149,10 @@ export default function ConnectionGraph({ resultData }: ConnectionGraphProps) {
             <div
               className = "absolute -left-2 -top-2 h-6 w-6 rounded-full"
               style = {{
-                animation: isGlowActive ? "1.8s ease-in-out infinite star-halo-target" : "none",
+                animation: isConnectionFound ? `star-halo-target 1.8s ease-in-out ${BALL_TRANSITION_MS}ms infinite` : "none",
                 background: "radial-gradient(circle, var(--color-connection-graph-target-ball-glow) 0%, var(--color-connection-graph-target-ball-glow) 18%, var(--color-connection-graph-target-ball-glow-soft) 42%, transparent 78%)",
-                opacity: isGlowActive ? .6 : 0,
+                opacity: isConnectionFound ? .6 : 0,
+                transition: `opacity 250ms ease ${BALL_TRANSITION_MS}ms`,
                 willChange: "opacity, filter"
               }}
             />
