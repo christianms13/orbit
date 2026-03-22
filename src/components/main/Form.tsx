@@ -237,8 +237,8 @@ export default function Form({ isLoading, setIsLoading, setResultData }: FormPro
 
   const responsiveProperties = {
     "input.text": "390:text-xl",
-    "submit-button.icon": "360:h-7 360:w-7 390:h-8 390:w-8",
-    "submit-button.text": "360:text-xl 390:text-2xl"
+    "submit-button.icon": "360:h-7 360:w-7 390:h-8 390:w-8 768:h-9 768:w-9",
+    "submit-button.text": "360:text-xl 390:text-2xl 768:gap-5 768:text-3xl"
   }
 
   return (

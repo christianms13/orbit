@@ -86,7 +86,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   const responsiveProperties = {
-    "body": "440:px-5"
+    "body": "440:px-5 768:px-10 930:px-15"
   }
 
   return (

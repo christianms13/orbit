@@ -7,6 +7,11 @@
   --breakpoint-390: 390px;
   --breakpoint-440: 440px;
 
+  --breakpoint-768: 768px;
+  --breakpoint-930: 930px;
+
+  --breakpoint-1024: 1024px;
+
   --color-background: #0f2222;
 
   --color-connection-graph-border: #0f4040;
