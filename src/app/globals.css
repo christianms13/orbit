@@ -39,17 +39,45 @@
   --color-connection-graph-title: #e7e9e9;
 
   --color-form-active-submit-button-fill: #0ceded;
+  --color-form-description: #808fa2;
+  --color-form-desktop-border: #28383b;
+  --color-form-desktop-fill: #0a2121;
+  --color-form-desktop-input-starting-label: #0ac0c0;
+  --color-form-desktop-input-target-label: #9d5aeb;
+  --color-form-desktop-input-wrapper-border: #2f3e50;
+  --color-form-desktop-submit-button-active-gradient-0: #8243ca;
+  --color-form-desktop-submit-button-active-gradient-1: #1d9ea0;
+  --color-form-desktop-submit-button-gradient-0: #9d5aeb;
+  --color-form-desktop-submit-button-gradient-1: #11bec1;
   --color-form-input-border: #324242;
   --color-form-input-clear-icon: #607676;
+  --color-form-input-desktop-icon: #5e6f85;
   --color-form-input-fill: #1c2d2d;
   --color-form-input-placeholder: #e3e8e8;
+  --color-form-input-selection-background: #0cd6d699;
+  --color-form-input-selection-text: #102222;
   --color-form-input-starting-tag: #0ac0c0;
   --color-form-input-target-tag: #9d5aeb;
   --color-form-input-text: #d8dbdb;
   --color-form-submit-button-fill: #0cd6d6;
   --color-form-submit-button-text: #102222;
+  --color-form-switch-button-active-fill: #182334;
+  --color-form-switch-button-border: #303e51;
+  --color-form-switch-button-fill: #1e293b;
+  --color-form-switch-button-hover-fill: #253650;
+  --color-form-switch-icon-fill: #0dd7d7;
+  --color-form-title-gradient-0: #0ac0c0;
+  --color-form-title-gradient-1: #ffffff;
+  --color-form-title-gradient-2: #9d5aeb;
 
+  --color-header-border: #123034;
+  --color-header-fill: #0a1f1f;
   --color-header-menu-toggle: #46a4a4;
+  --color-header-projects-icon-fill: #667282;
+  --color-header-projects-icon-hover-fill: #0cd6d6;
+  --color-header-tooltip-arrow: #2e3944;
+  --color-header-tooltip-fill: #2e3944;
+  --color-header-tooltip-text: #f0f0f0;
 
   --color-optimal-path-results-card-border: #151f1f;
   --color-optimal-path-results-card-fill: #081414;
@@ -86,9 +114,12 @@
   --drop-shadow-connection-graph-target-ball: 0 0 5px #9d71d0;
   --drop-shadow-connection-graph-target-ball-glow: 0 0 20px #9d71d0, 0 0 30px #9d71d0;
 
+  --drop-shadow-form-desktop-submit-button-0: 0 0 80px #57e3e398;
+  --drop-shadow-form-desktop-submit-button-1: 0 0 20px #57e3e383;
   --drop-shadow-form-input-starting-tag: 0 0 10px #57e3e3;
   --drop-shadow-form-input-target-tag: 0 0 10px #9d71d0;
   --drop-shadow-form-submit-button: 0 0 7px #57e3e3;
+  --drop-shadow-form: 0 0 20px #0000007e;
 
   --drop-shadow-optimal-path-results-connection: 0 0 5px #151f1f;
   --drop-shadow-optimal-path-results-origin: 0 0 10px #57e3e3;
@@ -102,9 +133,13 @@
   --font-connection-graph-path-found-state: var(--font-connection-graph-path-found-state);
   --font-connection-graph-title-and-level-indicator: var(--font-connection-graph-title-and-level-indicator);
 
+  --font-form-description: var(--font-form-description);
   --font-form-input: var(--font-form-input);
   --font-form-submit-button: var(--font-form-submit-button);
-  
+  --font-form-title-and-desktop-input-label: var(--font-form-title-and-desktop-input-label);
+
+  --font-header-tooltip: var(--font-header-tooltip);
+
   --font-optimal-path-results-results-details: var(--font-optimal-path-results-results-details);
   --font-optimal-path-results-results-title: var(--font-optimal-path-results-results-title);
   --font-optimal-path-results-state: var(--font-optimal-path-results-state);

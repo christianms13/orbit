@@ -34,13 +34,14 @@ export default function OptimalPathResults({ isLoading, resultData }: OptimalPat
     "avatar.icon": "768:h-7 768:w-7",
     "card.details": "768:text-lg",
     "card.title": "768:text-2xl",
+    "optimal-path-results": "1024:px-[10%]",
     "poster.container": "768:w-22",
     "state": "360:tracking-widest 390:text-3xl 390:tracking-wider",
     "title": "360:text-base 390:text-lg"
   }
 
   return (
-    <div className = "flex flex-col gap-5">
+    <div className = { `${responsiveProperties["optimal-path-results"]} flex flex-col gap-5` }>
       <h2 className = { `${responsiveProperties["title"]} font-optimal-path-results-title text-optimal-path-results-title text-sm uppercase` }>
         {t("optimal-path-results.title")}
       </h2>

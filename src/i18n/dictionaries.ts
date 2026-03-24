@@ -13,12 +13,19 @@ export const dictionaries = {
 
     "form.autocomplete.loading": "Searching actors...",
     "form.autocomplete.no-results": "No actor suggestions found",
+    "form.description": "Discover the degrees of separation between any two stars in the galaxy.",
+    "form.desktop-submit": "connect stars",
+    "form.input.desktop-label.starting": "starting actor",
+    "form.input.desktop-label.target": "target actor",
     "form.input.placeholder.starting": "e.g. Michael B. Jordan",
     "form.input.placeholder.target": "e.g. Ryan Gosling",
     "form.loading": "calculating...",
     "form.submit": "calculate path",
+    "form.title": "find the connection",
 
     "header.logo-alt": "Logo",
+    "header.projects.figma": "check figma design",
+    "header.projects.github": "check github code",
 
     "optimal-path-results.error.calculation-failed": "failed to calculate path",
     "optimal-path-results.error.misconfigured-environment": "server is missing required configuration",
@@ -52,12 +59,19 @@ export const dictionaries = {
 
     "form.autocomplete.loading": "Buscando actores...",
     "form.autocomplete.no-results": "No se encontraron sugerencias",
+    "form.description": "Descubre los grados de separación entre dos estrellas en la galaxia.",
+    "form.desktop-submit": "conectar estrellas",
+    "form.input.desktop-label.starting": "actor inicial",
+    "form.input.desktop-label.target": "actor destino",
     "form.input.placeholder.starting": "ej. Michael B. Jordan",
     "form.input.placeholder.target": "ej. Ryan Gosling",
     "form.loading": "calculando...",
     "form.submit": "calcular conexión",
+    "form.title": "encontrar la conexión",
 
     "header.logo-alt": "Logo",
+    "header.projects.figma": "ver diseño en figma",
+    "header.projects.github": "ver código en github",
 
     "optimal-path-results.error.calculation-failed": "falló el cálculo de la conexión",
     "optimal-path-results.error.misconfigured-environment": "al servidor le falta configuración requerida",

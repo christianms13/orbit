@@ -31,6 +31,11 @@ const connectionGraphTitleAndLevelIndicatorFont = localfont({
   variable: "--font-connection-graph-title-and-level-indicator"
 })
 
+const formDescriptionFont = localfont({
+  src: "../fonts/brava-slab/semibold.woff2",
+  variable: "--font-form-description"
+})
+
 const formInputFont = localfont({
   src: "../fonts/alata/regular.woff2",
   variable: "--font-form-input"
@@ -39,6 +44,16 @@ const formInputFont = localfont({
 const formSubmitButtonFont = localfont({
   src: "../fonts/saira-stencil-one/regular.woff2",
   variable: "--font-form-submit-button"
+})
+
+const formTitleAndDesktopInputLabelFont = localfont({
+  src: "../fonts/augmento/black.woff2",
+  variable: "--font-form-title-and-desktop-input-label"
+})
+
+const headerTooltipFont = localfont({
+  src: "../fonts/josefin-sans/regular.woff2",
+  variable: "--font-header-tooltip"
 })
 
 const optimalPathResultsResultsDetailsFont = localfont({
@@ -71,8 +86,11 @@ const fonts = [
   connectionGraphPathFoundDeclarationFont,
   connectionGraphPathFoundStateFont,
   connectionGraphTitleAndLevelIndicatorFont,
+  formDescriptionFont,
   formInputFont,
   formSubmitButtonFont,
+  formTitleAndDesktopInputLabelFont,
+  headerTooltipFont,
   optimalPathResultsResultsDetailsFont,
   optimalPathResultsResultsTitleFont,
   optimalPathResultsStateFont,
@@ -86,7 +104,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   const responsiveProperties = {
-    "body": "440:px-5 768:px-10 930:px-15"
+    "body": "1024:p-0 440:px-5 768:px-10 930:px-15"
   }
 
   return (
