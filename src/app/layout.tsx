@@ -61,6 +61,21 @@ const headerTooltipFont = localfont({
   variable: "--font-header-tooltip"
 })
 
+const optimalPathResultsDesktopDescriptionFont = localfont({
+  src: "../fonts/doppio-one/regular.woff2",
+  variable: "--font-optimal-path-results-desktop-description"
+})
+
+const optimalPathResultsDesktopResultsAndSummaryFonts = localfont({
+  src: "../fonts/idealista/bold.woff2",
+  variable: "--font-optimal-path-results-desktop-results-and-summary"
+})
+
+const optimalPathResultsDesktopTitleFont = localfont({
+  src: "../fonts/br-omny/semibold.woff2",
+  variable: "--font-optimal-path-results-desktop-title"
+})
+
 const optimalPathResultsResultsDetailsFont = localfont({
   src: "../fonts/saira-extra-condensed/semibold.woff2",
   variable: "--font-optimal-path-results-results-details"
@@ -97,6 +112,9 @@ const fonts = [
   formSubmitButtonFont,
   formTitleAndDesktopInputLabelFont,
   headerTooltipFont,
+  optimalPathResultsDesktopDescriptionFont,
+  optimalPathResultsDesktopResultsAndSummaryFonts,
+  optimalPathResultsDesktopTitleFont,
   optimalPathResultsResultsDetailsFont,
   optimalPathResultsResultsTitleFont,
   optimalPathResultsStateFont,

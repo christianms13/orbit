@@ -2,9 +2,11 @@
 
 import { PathState } from "@/actions/orbit"
 import { useI18n } from "@/i18n/I18nProvider"
-import { IconLink, IconMovie, IconUser } from "@tabler/icons-react"
+import { IconLink, IconMovie, IconTimeline, IconUser } from "@tabler/icons-react"
 import Image from "next/image"
 import Link from "next/link"
+import { Fragment } from "react/jsx-runtime"
+import Tooltip from "../header/Tooltip"
 
 interface OptimalPathResultsProps {
   isLoading: boolean
@@ -13,6 +15,139 @@ interface OptimalPathResultsProps {
 
 export default function OptimalPathResults({ isLoading, resultData }: OptimalPathResultsProps) {
   const {t} = useI18n()
+  const noneValue = t("optimal-path-results.desktop-summary.none")
+
+  const formatRuntime = (totalMinutes: number): string => {
+    const hours = Math.floor(totalMinutes / 60)
+    const minutes = totalMinutes % 60
+
+    if (hours <= 0) {
+      return `${minutes}m`
+    }
+
+    return minutes > 0 ? `${hours}h ${minutes}m` : `${hours}h`
+  }
+
+  const fallback = {
+    eraSpanned: noneValue,
+    sharedGenres: noneValue,
+    sharedGenresTooltip: "",
+    totalDegrees: "0",
+    totalRuntime: "0m"
+  }
+
+  const formatSharedGenres = (genres: string[]): string => {
+    if (genres.length === 0) {
+      return fallback.sharedGenres
+    }
+
+    if (genres.length === 1) {
+      return genres[0]
+    }
+
+    const firstGenre = genres[0]
+    const secondGenrePreview = genres[1].slice(0, 3)
+
+    return `${firstGenre}, ${secondGenrePreview}...`
+  }
+
+  const summaryValues = (() => {
+    if (!resultData?.path?.length || !resultData.success) {
+      return fallback
+    }
+
+    const movies = resultData.path.filter((node) => node.type === "Movie")
+    const actorCount = resultData.path.filter((node) => node.type === "Actor").length
+
+    const totalDegrees = Math.max(actorCount - 1, 0)
+
+    const allYears = movies
+      .map((movie) => {
+        const yearText = String(movie.release_date ?? "").split("-")[0]
+        const year = Number.parseInt(yearText, 10)
+
+        return Number.isFinite(year) ? year : null
+      })
+      .filter((year): year is number => year !== null)
+
+    const eraSpanned = allYears.length > 0
+      ? `${Math.min(...allYears)} - ${Math.max(...allYears)}`
+      : fallback.eraSpanned
+
+    const totalRuntimeMinutes = movies.reduce((sum, movie) => {
+      const runtime = Number(movie.runtime)
+
+      return Number.isFinite(runtime) ? sum + runtime : sum
+    }, 0)
+
+    const totalRuntime = totalRuntimeMinutes > 0 ? formatRuntime(totalRuntimeMinutes) : fallback.totalRuntime
+
+    const movieGenreLists = movies
+      .map((movie) => Array.isArray(movie.genres) ? movie.genres.filter((genre): genre is string => typeof genre === "string" && genre.length > 0) : [])
+      .filter((genres) => genres.length > 0)
+
+    let sharedGenres = fallback.sharedGenres
+    let sharedGenresTooltip = fallback.sharedGenres
+
+    if (movieGenreLists.length > 0) {
+      const intersection = movieGenreLists.slice(1).reduce(
+        (acc, current) => acc.filter((genre) => current.includes(genre)),
+        [...movieGenreLists[0]]
+      )
+
+      if (intersection.length > 0) {
+        const topIntersectionGenres = intersection.slice(0, 2)
+        sharedGenres = formatSharedGenres(topIntersectionGenres)
+        sharedGenresTooltip = topIntersectionGenres.length > 1 ? topIntersectionGenres.join(", ") : ""
+      } else {
+        const genreFrequency = new Map<string, number>()
+
+        movieGenreLists.flat().forEach((genre) => {
+          genreFrequency.set(genre, (genreFrequency.get(genre) ?? 0) + 1)
+        })
+
+        const topGenres = [...genreFrequency.entries()]
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 2)
+          .map(([genre]) => genre)
+
+        sharedGenres = formatSharedGenres(topGenres)
+        sharedGenresTooltip = topGenres.length > 1 ? topGenres.join(", ") : ""
+      }
+    }
+
+    return {
+      eraSpanned,
+      sharedGenres,
+      sharedGenresTooltip,
+      totalDegrees: String(totalDegrees),
+      totalRuntime
+    }
+  })()
+
+  const desktopSummaryProps = [
+    {
+      title: t("optimal-path-results.desktop-summary.total-degrees"),
+      valueColor: "text-optimal-path-results-summary-total-degrees-value",
+      value: summaryValues.totalDegrees
+    },
+    {
+      title: t("optimal-path-results.desktop-summary.shared-genres"),
+      valueColor: "text-optimal-path-results-summary-shared-genres-value",
+      value: summaryValues.sharedGenres,
+      valueTooltip: summaryValues.sharedGenresTooltip
+    },
+    {
+      title: t("optimal-path-results.desktop-summary.era-spanned"),
+      valueColor: "text-optimal-path-results-summary-era-spanned-and-total-runtime-value",
+      value: summaryValues.eraSpanned
+    },
+    {
+      title: t("optimal-path-results.desktop-summary.total-runtime"),
+      valueColor: "text-optimal-path-results-summary-era-spanned-and-total-runtime-value",
+      value: summaryValues.totalRuntime
+    }
+  ]
 
   const getErrorMessage = () => {
     switch (resultData?.message) {
@@ -34,10 +169,11 @@ export default function OptimalPathResults({ isLoading, resultData }: OptimalPat
     "avatar.icon": "768:h-7 768:w-7",
     "card.details": "768:text-lg",
     "card.title": "768:text-2xl",
+    "desktop-top-wrapper": "1024:flex",
     "optimal-path-results": "1024:px-[10%]",
     "poster.container": "768:w-22",
-    "state": "360:tracking-widest 390:text-3xl 390:tracking-wider",
-    "title": "360:text-base 390:text-lg"
+    "state": "1024:text-5xl 1024:tracking-wide 360:tracking-widest 390:text-3xl 390:tracking-wider",
+    "title": "1024:hidden 360:text-base 390:text-lg"
   }
 
   return (
@@ -45,6 +181,53 @@ export default function OptimalPathResults({ isLoading, resultData }: OptimalPat
       <h2 className = { `${responsiveProperties["title"]} font-optimal-path-results-title text-optimal-path-results-title text-sm uppercase` }>
         {t("optimal-path-results.title")}
       </h2>
+
+      <div className = { `${responsiveProperties["desktop-top-wrapper"]} flex-col gap-5 hidden` }>
+        <div className = "flex flex-col gap-1 items-start justify-start">
+          <div className = "flex gap-2 items-center justify-center">
+            <IconTimeline className = "text-optimal-path-results-desktop-title-icon-fill" size = {40} />
+            <h2 className = "capitalize font-optimal-path-results-desktop-title text-4xl text-optimal-path-results-desktop-title">
+              {t("optimal-path-results.desktop-title")}
+            </h2>
+          </div>
+
+          <p className = "font-optimal-path-results-desktop-description text-optimal-path-results-desktop-description">
+            {t("optimal-path-results.desktop-description")}
+          </p>
+        </div>
+
+        {resultData?.success && (
+          <div className = "bg-optimal-path-results-summary-wrapper-fill border-2 border-optimal-path-results-summary-wrapper-border flex gap-5 items-center justify-center px-5 py-4 rounded-3xl self-end">
+            {desktopSummaryProps.map((prop, i) => (
+              <Fragment key = {i}>
+                {i !== 0 && (
+                  <div className = "border border-optimal-path-results-desktop-summary-separator self-stretch" />
+                )}
+
+                <div className = "flex flex-col font-optimal-path-results-desktop-results-and-summary gap-1 items-center justify-center">
+                  <h4 className = "text-optimal-path-results-desktop-summary-title text-xs tracking-widest uppercase">
+                    {prop.title}
+                  </h4>
+
+                  {prop.valueTooltip ? (
+                    <div className = "group relative">
+                      <span className = { `${prop.valueColor} capitalize text-2xl` }>
+                        {prop.value}
+                      </span>
+
+                      <Tooltip text = {prop.valueTooltip} />
+                    </div>
+                  ) : (
+                    <span className = { `${prop.valueColor} capitalize text-2xl` }>
+                      {prop.value}
+                    </span>
+                  )}
+                </div>
+              </Fragment>
+            ))}
+          </div>
+        )}
+      </div>
 
       {isLoading ? (
         <h3 className = { `${responsiveProperties["state"]} animate-pulse-fast font-optimal-path-results-state text-2xl text-center text-optimal-path-results-state tracking-wider uppercase` }>

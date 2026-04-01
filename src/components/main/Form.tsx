@@ -401,7 +401,7 @@ export default function Form({ isLoading, setIsLoading, setResultData }: FormPro
             {t("form.title")}
           </h2>
 
-          <p className = { `${responsiveProperties["form.description"]} font-form-description hidden text-form-description` }>
+          <p className = { `${responsiveProperties["form.description"]} font-form-description hidden text-[15px] text-form-description tracking-wide` }>
             {t("form.description")}
           </p>
 

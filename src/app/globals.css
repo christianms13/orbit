@@ -97,9 +97,20 @@
   --color-optimal-path-results-card-border: #151f1f;
   --color-optimal-path-results-card-fill: #081414;
   --color-optimal-path-results-connection: #607676;
+  --color-optimal-path-results-desktop-description: #9098a4;
+  --color-optimal-path-results-desktop-summary-separator: #1d2526;
+  --color-optimal-path-results-desktop-summary-title: #667282;
+  --color-optimal-path-results-desktop-title-icon-fill: #0df2f2;
+  --color-optimal-path-results-desktop-title: #fdfcff;
   --color-optimal-path-results-error: #f23a3a;
   --color-optimal-path-results-origin: #0ac1c1;
   --color-optimal-path-results-state: #0df2f2;
+  --color-optimal-path-results-summary-era-spanned-and-total-runtime-value: #0df2f2;
+  --color-optimal-path-results-summary-shared-genres-value: #ffffff;
+  --color-optimal-path-results-summary-total-degrees-value: #a855f7;
+  --color-optimal-path-results-summary-wrapper-border: #212D34;
+  --color-optimal-path-results-summary-wrapper-fill: #091414;
+  --color-optimal-path-results-summary-wrapper-tab-title: #667282;
   --color-optimal-path-results-target: #9c57ea;
   --color-optimal-path-results-text-primary: #e7e9e9;
   --color-optimal-path-results-text-secondary: #8a9c9c;
@@ -157,6 +168,9 @@
 
   --font-header-tooltip: var(--font-header-tooltip);
 
+  --font-optimal-path-results-desktop-description: var(--font-optimal-path-results-desktop-description);
+  --font-optimal-path-results-desktop-results-and-summary: var(--font-optimal-path-results-desktop-results-and-summary);
+  --font-optimal-path-results-desktop-title: var(--font-optimal-path-results-desktop-title);
   --font-optimal-path-results-results-details: var(--font-optimal-path-results-results-details);
   --font-optimal-path-results-results-title: var(--font-optimal-path-results-results-title);
   --font-optimal-path-results-state: var(--font-optimal-path-results-state);
