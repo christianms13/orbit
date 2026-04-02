@@ -22,8 +22,8 @@ export default function Footer() {
 
   const responsiveProperties = {
     "footer": "1024:flex",
-    "copyright": ":hidden",
-    "copyright.longer": ":block"
+    "copyright": "1280:hidden",
+    "copyright.longer": "1280:block hidden"
   }
 
   const socialProfilesProps = [
@@ -43,7 +43,7 @@ export default function Footer() {
         {t("footer.copyright")}
       </p>
 
-      <p className = { `${responsiveProperties["copyright.longer"]} hidden text-footer-copyright` }>
+      <p className = { `${responsiveProperties["copyright.longer"]} text-footer-copyright` }>
         {t("footer.longer-copyright")}
       </p>
 

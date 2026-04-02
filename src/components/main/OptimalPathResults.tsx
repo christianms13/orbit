@@ -170,12 +170,11 @@ export default function OptimalPathResults({ isLoading, resultData }: OptimalPat
     "card.details": "768:text-lg",
     "card.title": "768:text-2xl",
     "desktop-each-result-wrapper": "1024:hidden",
-    "desktop-results-inner-wrapper": "1024:flex",
-    "desktop-results-wrapper": "1024:bg-optimal-path-results-desktop-results-wrapper-fill 1024:border-4 1024:border-optimal-path-results-desktop-results-wrapper-border 1024:flex-row 1024:gap-10 1024:p-10 1024:rounded-3xl",
+    "desktop-results-wrapper": "1024:bg-optimal-path-results-desktop-results-wrapper-fill 1024:border-4 1024:border-optimal-path-results-desktop-results-wrapper-border 1024:flex-col 1024:gap-8 1024:p-10 1024:rounded-4xl",
     "desktop-top-wrapper": "1024:flex",
     "desktop.arrow": "1024:block",
     "movie-icon.container": "1024:hidden",
-    "optimal-path-results": "1024:px-[10%]",
+    "optimal-path-results": "1440:px-[25%] 1280:px-[20%] 1080:px-[15%] 1024:px-[10%]",
     "poster.container": "768:w-22",
     "state": "1024:text-5xl 1024:tracking-wide 360:tracking-widest 390:text-3xl 390:tracking-wider",
     "title": "1024:hidden 360:text-base 390:text-lg"
@@ -256,15 +255,10 @@ export default function OptimalPathResults({ isLoading, resultData }: OptimalPat
 
               const colorClass = isStart ? "text-optimal-path-results-origin" : isEnd ? "text-optimal-path-results-target" : "text-optimal-path-results-connection"
               const glowClass = isStart ? "border-optimal-path-results-origin drop-shadow-optimal-path-results-origin" : isEnd ? "border-optimal-path-results-target drop-shadow-optimal-path-results-target" : "border-optimal-path-results-connection drop-shadow-optimal-path-results-connection"
-              const desktopGlowClass = isStart ? "drop-shadow-optimal-path-results-desktop-origin" : isEnd ? "drop-shadow-optimal-path-results-desktop-target" : "drop-shadow-optimal-path-results-desktop-connection"
 
               const isLineBlue = i === 0
               const isLinePurple = i === resultData.path!.length - 2
               const lineClass = isLineBlue ? "bg-optimal-path-results-origin" : isLinePurple ? "bg-optimal-path-results-target" : "bg-optimal-path-results-connection"
-
-              const isArrowBlue = i === 0
-              const isArrowPurple = i === resultData.path!.length - 2
-              const arrowColorClass = isArrowBlue ? "text-optimal-path-results-origin" : isArrowPurple ? "text-optimal-path-results-target" : "text-optimal-path-results-connection"
 
               const releaseYear = node.release_date ? String(node.release_date).split("-")[0] : ""
               const votePercentage = node.vote_average ? `${Math.round(Number(node.vote_average) * 10)}%` : ""
@@ -364,72 +358,94 @@ export default function OptimalPathResults({ isLoading, resultData }: OptimalPat
                     </Link>
                   </div>
 
-                  <div className = { `${responsiveProperties["desktop-results-inner-wrapper"]} font-optimal-path-results-desktop-results-and-summary gap-10 hidden items-start justify-center` }>
-                    <div className = "flex flex-col items-center justify-center max-w-50 w-max">
-                      {isActor ? (
-                        <Link
-                          className = { `${desktopGlowClass} bg-optimal-path-results-card-fill border-3 flex h-20 items-center justify-center mb-9 mt-8 overflow-hidden rounded-full w-20` }
-                          href = {tmdbUrl}
-                          rel = "noopener noreferrer"
-                          target = "_blank"
-                        >
-                          {node.profile ? (
-                            <Image
-                              alt = {String(node.name)}
-                              src = {node.profile}
-                              width = {80}
-                              height = {80}
-                              className = "rounded-full"
-                            />
-                          ) : (
-                            <IconUser className = {colorClass} size = {40} />
-                          )}
-                        </Link>
-                      ) : (
-                        <Link
-                          className = "aspect-2/3 border border-optimal-path-results-card-border overflow-hidden rounded shrink-0 w-25"
-                          href = {tmdbUrl}
-                          rel = "noopener noreferrer"
-                          target = "_blank"
-                        >
-                          {node.poster ? (
-                            <Image
-                              alt = {String(node.title)}
-                              height = {150}
-                              src = {String(node.poster)}
-                              width = {100}
-                            />
-                          ) : (
-                            <div className = { `${responsiveProperties["poster.container"]} aspect-2/3 border border-optimal-path-results-card-border overflow-hidden rounded shrink-0 w-25 flex items-center justify-center` }>
-                              <IconMovie className = {`${colorClass} h-6 w-6`} />
-                            </div>
-                          )}
-                        </Link>
-                      )}
-
-                      <div className = "flex flex-col gap-1 items-center justify-center text-center">
-                        <Link
-                          className = "font-optimal-path-results-desktop-results-title hover:text-optimal-path-results-hover-desktop-actor-and-movie-name-and-title mt-4 text-optimal-path-results-desktop-actor-and-movie-name-and-title text-xl"
-                          href = {tmdbUrl}
-                          rel = "noopener noreferrer"
-                          target = "_blank"
-                        >
-                          {String(node.name || node.title)} {!isActor && node.release_date ? `(${String(node.release_date).split("-")[0]})` : ""}
-                        </Link>
-
-                        <span className = "text-optimal-path-results-desktop-actor-and-movie-tag text-sm uppercase">
-                          {isActor ? t("optimal-path-results.desktop-actor.tag") : t("optimal-path-results.desktop-movie.tag")}
-                        </span>
-                      </div>
-                    </div>
-
-                    {!isEnd && (
-                      <IconArrowNarrowRightDashed className = { `${arrowColorClass} ${responsiveProperties["desktop.arrow"]} hidden mt-12` } size = {50} />
-                    )}
-                  </div>
                 </Fragment>
               )
             })}
+
+            <div className = "1024:flex 1024:gap-y-8 1080:gap-8 flex-wrap font-optimal-path-results-desktop-results-and-summary gap-6 hidden items-start justify-center min-[1200px]:gap-3">
+              {resultData.path.map((node, index) => {
+                    const isActor = node.type === "Actor"
+                    const isStart = index === 0
+                    const isEnd = index === resultData.path!.length - 1
+                    const colorClass = isStart ? "text-optimal-path-results-origin" : isEnd ? "text-optimal-path-results-target" : "text-optimal-path-results-connection"
+                    const desktopGlowClass = isStart ? "drop-shadow-optimal-path-results-desktop-origin" : isEnd ? "drop-shadow-optimal-path-results-desktop-target" : "drop-shadow-optimal-path-results-desktop-connection"
+                    const tmdbUrl = isActor ? `https://www.themoviedb.org/person/${node.id}` : `https://www.themoviedb.org/movie/${node.id}`
+                    const isGlobalLast = index === resultData.path!.length - 1
+                    const arrowIndex = index
+                    const isArrowBlue = arrowIndex === 0
+                    const isArrowPurple = arrowIndex === resultData.path!.length - 2
+                    const arrowColorClass = isArrowBlue ? "text-optimal-path-results-origin" : isArrowPurple ? "text-optimal-path-results-target" : "text-optimal-path-results-connection"
+
+                    return (
+                      <div className = "1080:gap-8 flex gap-6 items-start min-[1200px]:gap-3 shrink-0" key = {`desktop-node-${index}-${node.id}`}>
+                        <div className = "flex flex-col items-center justify-center max-w-52 min-[1200px]:max-w-56 min-[1400px]:max-w-60 w-max">
+                          {isActor ? (
+                            <Link
+                              className = { `${desktopGlowClass} bg-optimal-path-results-card-fill border-3 flex h-20 items-center justify-center mb-9 mt-8 overflow-hidden rounded-full w-20` }
+                              href = {tmdbUrl}
+                              rel = "noopener noreferrer"
+                              target = "_blank"
+                            >
+                              {node.profile ? (
+                                <Image
+                                  alt = {String(node.name)}
+                                  className = "rounded-full"
+                                  height = {80}
+                                  src = {node.profile}
+                                  width = {80}
+                                />
+                              ) : (
+                                <IconUser className = {colorClass} size = {40} />
+                              )}
+                            </Link>
+                          ) : (
+                            <Link
+                              className = "aspect-2/3 border border-optimal-path-results-card-border overflow-hidden rounded shrink-0 w-25"
+                              href = {tmdbUrl}
+                              rel = "noopener noreferrer"
+                              target = "_blank"
+                            >
+                              {node.poster ? (
+                                <Image
+                                  alt = {String(node.title)}
+                                  height = {150}
+                                  src = {String(node.poster)}
+                                  width = {100}
+                                />
+                              ) : (
+                                <div className = "aspect-2/3 border border-optimal-path-results-card-border flex items-center justify-center overflow-hidden rounded shrink-0 w-25">
+                                  <IconMovie className = {`${colorClass} h-6 w-6`} />
+                                </div>
+                              )}
+                            </Link>
+                          )}
+
+                          <div className = "flex flex-col gap-1 items-center justify-center text-center">
+                            <Link
+                              className = "font-optimal-path-results-desktop-results-title hover:text-optimal-path-results-hover-desktop-actor-and-movie-name-and-title min-[1200px]:text-xl mt-4 text-lg text-optimal-path-results-desktop-actor-and-movie-name-and-title"
+                              href = {tmdbUrl}
+                              rel = "noopener noreferrer"
+                              target = "_blank"
+                            >
+                              {String(node.name || node.title)} {!isActor && node.release_date ? `(${String(node.release_date).split("-")[0]})` : ""}
+                            </Link>
+
+                            <span className = "text-optimal-path-results-desktop-actor-and-movie-tag text-sm uppercase">
+                              {isActor ? t("optimal-path-results.desktop-actor.tag") : t("optimal-path-results.desktop-movie.tag")}
+                            </span>
+                          </div>
+                        </div>
+
+                        {!isGlobalLast && (
+                          <IconArrowNarrowRightDashed
+                            className = { `${arrowColorClass} ${responsiveProperties["desktop.arrow"]} hidden h-12.5 mt-12 shrink-0 w-12.5` }
+                            size = {50}
+                          />
+                        )}
+                      </div>
+                    )
+                  })}
+            </div>
           </div>
         </div>
       )}

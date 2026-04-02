@@ -92,7 +92,7 @@ export default function ConnectionGraph({ resultData }: ConnectionGraphProps) {
   const pathState = getPathState()
 
   const responsiveProperties = {
-    "connection-graph": "1024:px-[10%]",
+    "connection-graph": "1440:px-[25%] 1280:px-[20%] 1080:px-[15%] 1024:px-[10%]",
     "inner.desktop-background": "1024:block",
     "inner.desktop-inner-ball": "1024:block",
     "inner.desktop-moving-ball": "1024:h-3 1024:w-3",
@@ -103,7 +103,7 @@ export default function ConnectionGraph({ resultData }: ConnectionGraphProps) {
     "outer.heading": "1024:hidden",
     "outer.level-indicator": "360:text-sm 390:text-base",
     "outer.title": "360:text-lg 390:text-xl",
-    "outer.wrapper": "1024:border-2 1024:border-connection-graph-outer-desktop-border 1024:overflow-hidden 1024:p-0 1024:rounded-3xl"
+    "outer.wrapper": "1024:border-2 1024:border-connection-graph-outer-desktop-border 1024:overflow-hidden 1024:p-0 1024:rounded-4xl"
   }
 
   useEffect(() => {

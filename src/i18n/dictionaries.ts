@@ -98,7 +98,7 @@ export const dictionaries = {
     "optimal-path-results.desktop-summary.era-spanned": "lapso cubierto",
     "optimal-path-results.desktop-summary.none": "ninguno",
     "optimal-path-results.desktop-summary.shared-genres": "estilos compartidos",
-    "optimal-path-results.desktop-summary.total-degrees": "pasos totales",
+    "optimal-path-results.desktop-summary.total-degrees": "grados totales",
     "optimal-path-results.desktop-summary.total-runtime": "tiempo total",
     "optimal-path-results.desktop-title": "conexión encontrada",
     "optimal-path-results.error.calculation-failed": "falló el cálculo de la conexión",

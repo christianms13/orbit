@@ -360,7 +360,7 @@ export default function Form({ isLoading, setIsLoading, setResultData }: FormPro
     "form.desktop-submit-button": "1024:[--tw-drop-shadow:drop-shadow(var(--drop-shadow-form-desktop-submit-button-0))_drop-shadow(var(--drop-shadow-form-desktop-submit-button-1))] 1024:cursor-pointer 1024:w-full",
     "form.switch-button": "1024:flex",
     "form.title": "1024:block",
-    "form.wrapper": "1024:px-25",
+    "form.wrapper": "1440:px-[25%] 1280:px-[20%] 1080:px-[15%] 1024:px-25",
     "input.clear-icon": "1024:cursor-pointer",
     "input.desktop-icon": "1024:block",
     "input.icon": "1024:hidden",

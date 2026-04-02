@@ -27,7 +27,7 @@ export default function Header() {
   ]
 
   const responsiveProperties = {
-    "header": "1024:bg-header-fill 1024:border-b-2 1024:border-header-border 1024:px-[10%] 1024:py-3",
+    "header": "1024:bg-header-fill 1024:border-b-2 1024:border-header-border 1024:px-[10%] 1024:py-3 1080:px-[15%] 1280:px-[20%] 1440:px-[25%]",
     "overlay.button": "1024:hidden 1024:pointer-events-none",
     "projects": "1024:flex"
   }
