@@ -171,10 +171,10 @@ export default function OptimalPathResults({ isLoading, resultData }: OptimalPat
     "card.title": "768:text-2xl",
     "desktop-each-result-wrapper": "1024:hidden",
     "desktop-results-wrapper": "1024:bg-optimal-path-results-desktop-results-wrapper-fill 1024:border-4 1024:border-optimal-path-results-desktop-results-wrapper-border 1024:flex-col 1024:gap-8 1024:p-10 1024:rounded-4xl",
-    "desktop-top-wrapper": "1024:flex",
+    "desktop-top-wrapper": "1024:flex 2400:flex-row 2400:gap-0 2400:items-center 2400:justify-between",
     "desktop.arrow": "1024:block",
     "movie-icon.container": "1024:hidden",
-    "optimal-path-results": "1440:px-[25%] 1280:px-[20%] 1080:px-[15%] 1024:px-[10%]",
+    "optimal-path-results": "1024:px-[10%] 1080:px-[15%] 1280:px-[20%] 1440:px-[25%]",
     "poster.container": "768:w-22",
     "state": "1024:text-5xl 1024:tracking-wide 360:tracking-widest 390:text-3xl 390:tracking-wider",
     "title": "1024:hidden 360:text-base 390:text-lg"
